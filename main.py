@@ -13,6 +13,11 @@ TEXT = (
     "The owl is plastic. I stay till the owl blinks."
 )
 
+# The gate refuses anything outside 1-280 characters, so fail loudly here
+# rather than writing an entry the judge will never see.
+assert 1 <= len(TEXT) <= 280, f"entry is {len(TEXT)} chars, must be 1-280"
+assert TEXT.strip(), "entry must not be only white space"
+
 
 def main() -> None:
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
